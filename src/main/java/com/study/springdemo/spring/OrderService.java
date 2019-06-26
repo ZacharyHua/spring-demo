@@ -1,9 +1,16 @@
 package com.study.springdemo.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
 /**
  *  订单操作、业务伪代码
  */
+@Service
 public class OrderService {
+    @Autowired
+    ApplicationContext applicationContext;
     /**
      *  新订单
      */
@@ -13,5 +20,8 @@ public class OrderService {
         System.out.println("1、创建订单成功");
         // 2---短信通知
         System.out.println("2、调用短信发送接口--> 恭喜喜提羽绒被子");
+
+        // 可以使用applicationContext上线文发送
+        applicationContext.publishEvent(this);
     }
 }
